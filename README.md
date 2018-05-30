@@ -2,7 +2,7 @@
 LDAP Authenticate Plugin for CakePHP 3.x and AuthComponent.
 
 ## Requirements
-* CakePHP 3.0
+* CakePHP 3.6
 * php5-ldap module or
 * php7.0-ldap module
 
@@ -14,10 +14,8 @@ You can install this plugin into your CakePHP application using [composer](http:
 The recommended way to install composer packages is:
 
 ```
-composer require queencitycodefactory/ldap
+composer require jeffersonsimaogoncalves/cakephp-ldap
 ```
-
-You can also add `"queencitycodefactory/ldap" : "dev-master"` to `require` section in your application's `composer.json`.
 
 ## Usage
 
@@ -131,3 +129,7 @@ config/app.php:
         ]
     ]
 ```
+
+## Credits
+
+This work is based on the [code by QueenCityCodeFactory](https://github.com/QueenCityCodeFactory/LDAP).

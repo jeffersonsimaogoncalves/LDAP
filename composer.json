@@ -1,43 +1,39 @@
 {
-    "name": "queencitycodefactory/ldap",
-    "description": "LDAP plugin for CakePHP 3.x",
-    "type": "cakephp-plugin",
-    "keywords":[
-        "cakephp",
-        "authenticate",
-        "ldap"
-    ],
-    "homepage": "http://github.com/QueenCityCodeFactory/LDAP",
-    "authors":[
-        {
-            "name":"darensipes",
-            "role":"Author",
-            "homepage":"https://github.com/darensipes"
-        }
-    ],
-    "license": "MIT",
-    "support":{
-        "source":"https://github.com/QueenCityCodeFactory/LDAP",
-        "issues":"https://github.com/QueenCityCodeFactory/LDAP/issues"
+  "name": "jeffersonsimaogoncalves/cakephp-ldap",
+  "description": "LDAP plugin for CakePHP 3.x",
+  "type": "cakephp-plugin",
+  "keywords": [
+    "cakephp",
+    "authenticate",
+    "ldap"
+  ],
+  "homepage": "http://github.com/jeffersonsimaogoncalves/cakephp-ldap",
+  "authors": [
+    {
+      "name": "darensipes",
+      "role": "Author",
+      "homepage": "https://github.com/darensipes"
     },
-    "require": {
-        "php": ">=5.5.9",
-        "cakephp/cakephp": ">=3.2.0"
-    },
-    "require-dev": {
-        "cakephp/cakephp-codesniffer": "dev-master",
-        "phpunit/phpunit": "*"
-    },
-    "autoload": {
-        "psr-4": {
-            "Ldap\\": "src"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "Ldap\\Test\\": "tests"
-        }
-    },
-    "minimum-stability": "stable",
-    "prefer-stable": true
+    {
+      "name": "Jefferson Simão Gonçalves",
+      "homepage": "https://github.com/jeffersonsimaogoncalves",
+      "role": "Author"
+    }
+  ],
+  "license": "MIT",
+  "support": {
+    "source": "https://github.com/jeffersonsimaogoncalves/cakephp-ldap",
+    "issues": "https://github.com/jeffersonsimaogoncalves/cakephp-ldap/issues"
+  },
+  "require": {
+    "php": ">=7.0",
+    "cakephp/cakephp": "^3.6"
+  },
+  "autoload": {
+    "psr-4": {
+      "Ldap\\": "src"
+    }
+  },
+  "minimum-stability": "stable",
+  "prefer-stable": true
 }

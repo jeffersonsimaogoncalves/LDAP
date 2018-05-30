@@ -12,16 +12,17 @@
  * @since         0.1.0
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
+
 namespace Ldap\Auth;
 
 use Cake\Auth\BaseAuthenticate;
 use Cake\Controller\ComponentRegistry;
+use Cake\Http\Response;
+use Cake\Http\ServerRequest;
 use Cake\Log\LogTrait;
 use Cake\Network\Exception\InternalErrorException;
-use Cake\Network\Exception\UnauthorizedException;
-use Cake\Network\Request;
-use Cake\Network\Response;
 use ErrorException;
+use Exception;
 
 /**
  * LDAP Authentication adapter for AuthComponent.
@@ -46,6 +47,12 @@ class LdapAuthenticate extends BaseAuthenticate
     use LogTrait;
 
     /**
+     * Log Errors
+     *
+     * @var boolean
+     */
+    public $logErrors = false;
+    /**
      * LDAP Object
      *
      * @var object
@@ -53,17 +60,10 @@ class LdapAuthenticate extends BaseAuthenticate
     private $ldapConnection;
 
     /**
-     * Log Errors
-     *
-     * @var boolean
-     */
-    public $logErrors = false;
-
-    /**
      * Constructor
      *
      * @param \Cake\Controller\ComponentRegistry $registry The Component registry used on this request.
-     * @param array $config Array of config to use.
+     * @param array                              $config   Array of config to use.
      */
     public function __construct(ComponentRegistry $registry, array $config = [])
     {
@@ -127,24 +127,26 @@ class LdapAuthenticate extends BaseAuthenticate
     /**
      * Authenticate a user based on the request information.
      *
-     * @param \Cake\Network\Request $request The request to authenticate with.
-     * @param \Cake\Network\Response $response The response to add headers to.
+     * @param \Cake\Http\ServerRequest $request  The request to authenticate with.
+     * @param \Cake\Http\Response      $response The response to add headers to.
+     *
      * @return mixed Either false on failure, or an array of user data on success.
      */
-    public function authenticate(Request $request, Response $response)
+    public function authenticate(ServerRequest $request, Response $response)
     {
-        if (!isset($request->data['username']) || !isset($request->data['password'])) {
+        if (!$request->getData('username') || !$request->getData('password')) {
             return false;
         }
 
-        return $this->_findUser($request->data['username'], $request->data['password']);
+        return $this->_findUser($request->getData('username'), $request->getData('password'));
     }
 
     /**
      * Find a user record using the username and password provided.
      *
-     * @param string $username The username/identifier.
+     * @param string      $username The username/identifier.
      * @param string|null $password The password
+     *
      * @return bool|array Either false on failure, or an array of user data.
      */
     protected function _findUser($username, $password = null)
@@ -192,7 +194,7 @@ class LdapAuthenticate extends BaseAuthenticate
 
         if (!empty($messages)) {
             $controller = $this->_registry->getController();
-            $controller->request->session()->write('Flash.' . $this->_config['flash']['key'], $messages);
+            $controller->request->getSession()->write('Flash.' . $this->_config['flash']['key'], $messages);
         }
 
         return false;
